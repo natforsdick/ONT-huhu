@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 #SBATCH --job-name=sup_guppy
-#SBATCH --time=01:00:00
+#SBATCH --time=1-12:00:00
 #SBATCH --partition=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --mem=7G
@@ -29,4 +29,4 @@ config=/opt/nesi/CS400_centos7_bdw/ont-guppy-gpu/5.0.7/data/dna_r9.4.1_450bps_su
 ###############
 
 guppy_basecaller -i ${data} -s ${output} --config ${config} --device auto --recursive \
---records_per_fastq 4000 --min_qscore 7 --calib_detect --detect_mid_strand_adapter # --resume
+--records_per_fastq 4000 --min_qscore 7 --calib_detect --detect_mid_strand_adapter --resume
