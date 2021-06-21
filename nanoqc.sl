@@ -14,8 +14,8 @@
 
 ###############
 # ENVIRONMENT #
-mkdir /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/
-mkdir /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-QC/
+combined=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/
+combinedQC=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-QC/
 
 PASS=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/pass/
 FAIL=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/fail/
@@ -24,28 +24,31 @@ FAIL=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/fail/
 ###############
 # MODULES     #
 module purge 
-#module load Python/3.7.3-gimkl-2018b
-module load Python/3.9.5-gimkl-2020a
+module load Miniconda3/4.9.2
+
+source /opt/nesi/CS400_centos7_bdw/Miniconda3/4.9.2/etc/profile.d/conda.sh
+
+conda activate nanoQC 
 ###############
 
 # Concatenating all and passed Huhu01 Fastq files, counting total reads, and running NanoQC.
 
-echo 'Concatenating fastqs'
-cat ${PASS}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz
-cat ${PASS}*.fastq ${FAIL}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-all.fastq.gz
-echo 'Concatenated'
+#echo 'Concatenating fastqs'
+#cat ${PASS}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz
+#cat ${PASS}*.fastq ${FAIL}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-all.fastq.gz
+#echo 'Concatenated'
 
-echo 'Counting passed reads'
-zcat /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz | echo $((`wc -l`/4))
+#echo 'Counting passed reads'
+#zcat /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz | echo $((`wc -l`/4))
 
-echo 'Counting all reads'
-zcat /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-all.fastq.gz | echo $((`wc -l`/4))
+#echo 'Counting all reads'
+#zcat /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-all.fastq.gz | echo $((`wc -l`/4))
 
 echo 'Beginning QC'
-cd /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/
+cd ${combined}
 for f in *.fastq.gz
 do
-nanoQC ${f} -o /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-QC/${f}.QC
+nanoQC ${f} -o ${combinedQC}${f}.QC
 echo 'Finished ${f} QC'
 done
 
