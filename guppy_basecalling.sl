@@ -13,6 +13,10 @@
 #SBATCH --mail-type=ALL
 #SBATCH --account=ga03186
 
+# guppy_basecalling.sl
+# Nat Forsdick, 2021-06-10
+# Basecall FAST5 files produced via Nanopore sequencing
+
 ###############
 # MODULES     #
 ###############
