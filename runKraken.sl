@@ -1,9 +1,9 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J kraken
-#SBATCH --time=04:00:00
-#SBATCH -c 16
-#SBATCH --mem=38G
+#SBATCH --time=00:06:00
+#SBATCH -c 12
+#SBATCH --mem=35G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL,END
 #SBATCH --output %x.%j.out

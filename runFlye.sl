@@ -1,6 +1,22 @@
-#SBATCH --cpus-per-task=10
-#SBATCH --mem=1000G
-#SBATCH --time=168:00:00
+#!/bin/bash -e
+#SBATCH -A ga03186
+#SBATCH -J flye
+#SBATCH --time=3-00:00:00
+#SBATCH -c 10
+#SBATCH --mem=500G
+#SBATCH --mail-user=forsdickn@landcareresearch.co.nz
+#SBATCH --mail-type=FAIL,END
+#SBATCH --output %x.%j.out
+#SBATCH --error %x.%j.err
+
+# Ann used the following to run her genome assembly:
+##SBATCH --cpus-per-task=10
+##SBATCH --mem=1000G
+##SBATCH --time=168:00:00
+
+# runFlye.sl
+# Nat Forsdick, 2021-06-21
+# Assembling uncorrected nanopore data with Flye.
 
 ###########
 # MODULES #
