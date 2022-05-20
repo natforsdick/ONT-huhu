@@ -2,27 +2,25 @@
 #SBATCH -A ga03186
 #SBATCH -J NanoQC
 #SBATCH --time 04:00:00 #
-#SBATCH	-N 1
-#SBATCH	-n 1
 #SBATCH -c 4
 #SBATCH --mem=6G
 #SBATCH --partition=large
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=ALL
-#SBATCH --output NanoQC.%j.out # CHANGE number for new run
-#SBATCH --error NanoQC.%j.err #  CHANGE number for new run
+#SBATCH --output %x.%j.out
+#SBATCH --error %x.%j.err 
 
 ###############
-# ENVIRONMENT #
-combined=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/
-combinedQC=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-QC/
+# PARAMS
+combined=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/combined-fastqs/
+combinedQC=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/combined-nanoQC/
 
-PASS=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/pass/
-FAIL=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/fail/
+PASS=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/Guppy-6.1.2/pass/
+FAIL=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/Guppy-6.1.2/fail/
 ###############
 
 ###############
-# MODULES     #
+# MODULES     
 module purge 
 module load Miniconda3/4.9.2
 
@@ -31,18 +29,18 @@ source /opt/nesi/CS400_centos7_bdw/Miniconda3/4.9.2/etc/profile.d/conda.sh
 conda activate nanoQC 
 ###############
 
-# Concatenating all and passed Huhu01 Fastq files, counting total reads, and running NanoQC.
+# Concatenating all and passed Huhu-PS5 fastq files, counting total reads, and running NanoQC.
 
-#echo 'Concatenating fastqs'
-#cat ${PASS}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz
-#cat ${PASS}*.fastq ${FAIL}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-all.fastq.gz
-#echo 'Concatenated'
+echo 'Concatenating fastqs'
+cat ${PASS}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/combined-fastqs/Huhu-PS5-pass.fastq.gz
+cat ${PASS}*.fastq ${FAIL}*.fastq | gzip > /nesi/nobackup/ga03186/Huhu_MinION/2022-05-16/combined-fastqs/Huhu-PS5-all.fastq.gz
+echo 'Concatenated'
 
-#echo 'Counting passed reads'
-#zcat /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz | echo $((`wc -l`/4))
+echo 'Counting passed reads'
+zcat /nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/combined-fastqs/Huhu-PS5-pass.fastq.gz | echo PASSED $((`wc -l`/4))
 
-#echo 'Counting all reads'
-#zcat /nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-all.fastq.gz | echo $((`wc -l`/4))
+echo 'Counting all reads'
+zcat /nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/combined-fastqs/Huhu-PS5-all.fastq.gz | echo ALL $((`wc -l`/4))
 
 echo 'Beginning QC'
 cd ${combined}
