@@ -25,7 +25,7 @@ ml list
 # ENVIRO  #
 ###########
 INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs
-targdata=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/Huhu01-A-B-pass.fastq.gz
+targdata=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/02_Huhu01-A-B-pass_trimmed.fastq.gz
 DB=/opt/nesi/db/Kraken2/standard-2018-09
 ###########
 
