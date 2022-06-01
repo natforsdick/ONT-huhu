@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J NanoQC
-#SBATCH --time 07:00:00 #
+#SBATCH --time 04:00:00 #
 #SBATCH -c 2
-#SBATCH --mem=10G
+#SBATCH --mem=2G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL
 #SBATCH --output %x.%j.out
@@ -12,14 +12,14 @@
 ###############
 # PARAMS
 
-# Takes 1 param as input - either hac or sup
+# Takes 2 params as input - 1) 'hac' or 'sup' and 2) INDIR name
 
-datadir=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/${1}-fastq/
-combined=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/${1}-fastq/combined-${1}-fastqs/
-combinedQC=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/${1}-fastq/${1}-QC/
+datadir="/nesi/nobackup/ga03186/Huhu_MinION/${2}/${1}-fastq/"
+combined="/nesi/nobackup/ga03186/Huhu_MinION/${2}/${1}-fastq/combined-${1}-fastqs/"
+combinedQC="/nesi/nobackup/ga03186/Huhu_MinION/${2}/${1}-fastq/${1}-QC/"
 
-PASS=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/${1}-fastq/pass/
-FAIL=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/${1}-fastq/fail/
+PASS="/nesi/nobackup/ga03186/Huhu_MinION/${2}/${1}-fastq/pass/"
+FAIL="/nesi/nobackup/ga03186/Huhu_MinION/${2}/${1}-fastq/fail/"
 ###############
 
 ###############
@@ -43,7 +43,7 @@ runID=$(grep -m 1 'protocol_group_id' ${datadir}/sequencing_telemetry.js | cut -
 echo '$runID is set to:' $runID $1
 
 #echo "Assessing with NanoPlot"
-
+# Run this step separately - it takes less couple of minutes with no resource required.
 #NanoPlot -t $SLURM_CPUS_PER_TASK -o $combinedQC -p ${1} -c forestgreen --N50 --summary sequencing_summary.txt
 #conda deactivate
 
@@ -69,7 +69,7 @@ cd ${combined}
 for f in *.fastq.gz
 	do
 
-	if [ ! -e ${combinedQC}${f}.QC/*.html ]; then
+	if [ -e ${combinedQC}${f}.QC/*.html ]; then
 		echo "completed QC for ${f}"
 	else
 		nanoQC ${f} -o ${combinedQC}${f}.QC
