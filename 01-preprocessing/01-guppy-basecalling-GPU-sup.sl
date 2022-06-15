@@ -1,11 +1,11 @@
 #!/bin/bash -e
 
 #SBATCH --account        ga03186
-#SBATCH --job-name       ont-huuh-guppy-gpu
+#SBATCH --job-name       ont-huhu-guppy-gpu
 #SBATCH --gpus-per-node  A100:1
-#SBATCH --mem            6G
+#SBATCH --mem            4G
 #SBATCH --cpus-per-task  4
-#SBATCH --time           6:00:00 # 9.5 hrs for 19.2 Gb input
+#SBATCH --time           10:00:00 # 9.5 hrs for 19.2 Gb input
 #SBATCH --output         %x.%j.out
 #SBATCH --error         %x.%j.err
 
@@ -15,8 +15,8 @@
 
 #########
 # PARAMS
-INDIR=/nesi/project/ga03186/data/Huhu-MinION/2022-05-23-Huhu-PB5-SRE/fast5
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-23-Huhu-SRE/
+INDIR=/nesi/project/ga03186/data/Huhu-MinION/2022-05-30-Huhu-PB5/fast5/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-30-Huhu-PB5/
 SUPCFG=/nesi/project/ga03186/scripts/ONT-scripts/guppy-cfg/dna_r9.4.1_450bps_sup.cfg
 #########
 
