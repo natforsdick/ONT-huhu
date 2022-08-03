@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J nanoQC
-#SBATCH --time=02:00:00
+#SBATCH --time=03:00:00
 #SBATCH --cpus-per-task=6
 #SBATCH --mem=5G
 #SBATCH --output %x.%j.out
@@ -13,8 +13,8 @@
 
 ###########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-16-PS5/combined-fastqs/
-file=Huhu-PS5-pass
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-23-Huhu-SRE/sup-fastq/02-trimfilt/
+file=Huhu-PB5-pass
 
 ###############
 # ENVIRONMENT 
@@ -25,8 +25,13 @@ source /opt/nesi/CS400_centos7_bdw/Miniconda3/4.9.2/etc/profile.d/conda.sh
 conda activate nanoQC
 ###############
 
-echo "Starting QC"
+cd $INDIR
+
+echo "Starting QC NanoFilt a"
 nanoQC 02_${file}_trimmed.fastq.gz -o 02_${file}_trimmed.fastq.QC
+
+echo "Starting QC NanoFilt b"
+nanoQC 02_${file}_trimmedb.fastq.gz -o 02_${file}_trimmedb.fastq.QC
 
 conda deactivate
 echo "Pipeline complete"
