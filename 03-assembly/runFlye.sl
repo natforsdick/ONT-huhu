@@ -9,11 +9,6 @@
 #SBATCH --output %x.%j.out
 #SBATCH --error %x.%j.err
 
-# Ann used the following to run her genome assembly:
-##SBATCH --cpus-per-task=10
-##SBATCH --mem=1000G
-##SBATCH --time=168:00:00
-
 # runFlye.sl
 # Nat Forsdick, 2021-06-21
 # Assembling uncorrected nanopore data with Flye.
