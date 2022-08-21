@@ -17,4 +17,4 @@ export INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-23-Huhu-SRE/sup-fastq/02
 export file=Huhu-PB5-pass
 
 
-bash 05-processed-QC.sh
+bash 06-processed-QC.sh
