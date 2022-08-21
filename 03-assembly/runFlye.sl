@@ -2,8 +2,8 @@
 #SBATCH -A ga03186
 #SBATCH -J flye
 #SBATCH --time=3-00:00:00
-#SBATCH -c 10
-#SBATCH --mem=500G
+#SBATCH -c 32
+#SBATCH --mem=200G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL,END
 #SBATCH --output %x.%j.out
@@ -17,15 +17,16 @@
 # MODULES #
 ###########
 ml purge
-ml load Flye/2.8.3-gimkl-2020a-Python-3.8.2
+ml load Flye/2.9-gimkl-2020a-Python-3.8.2
 ###########
 
 ###########
 # ENVIRO  #
 ###########
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/combined-fastqs/
-FASTQ=Huhu01-A-B-pass
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2021-05-28_Batch1/Guppy5_sup/03-assembly/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/
+FASTQ="../02_2022-05-30-Huhu-PB5_Huhu-PB5-pass_trimmed.fastq.gz ../02_2022-05-23-Huhu-SRE_Huhu-PB5-pass_trimmed.fastq.gz ../02_2022-05-16-PB5_Huhu-PB5-pass_trimmed.fastq.gz"
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/
 ###########
 
-flye --nano-raw ${INDIR}${FASTQ}.fastq.gz -g 1g -o ${OUTDIR} -t 10 -i 0
+cd ${OUTDIR}
+flye --nano-raw ${FASTQ} -g 1g -o ${OUTDIR} -t $SLURM_CPUS_PER_TASK -i 1 --scaffold
