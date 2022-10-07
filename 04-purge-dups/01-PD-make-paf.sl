@@ -38,7 +38,7 @@ cd $OUTDIR
 
 echo "Indexing"
 date
-minimap2 -d ${INDIR}${PRE}.mmi ${INDIR}${PRE}.fa
+minimap2 -d ${INDIR}${PRE}.mmi ${INDIR}${PRE}.fasta
 
 echo "Mapping"
 date
