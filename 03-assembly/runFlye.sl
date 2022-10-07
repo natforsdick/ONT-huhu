@@ -1,9 +1,9 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J flye
-#SBATCH --time=3-00:00:00
-#SBATCH -c 32
-#SBATCH --mem=200G
+#SBATCH --time=1-00:00:00
+#SBATCH -c 64
+#SBATCH --mem=350G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL,END
 #SBATCH --output %x.%j.out
@@ -29,4 +29,4 @@ OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/
 ###########
 
 cd ${OUTDIR}
-flye --nano-raw ${FASTQ} -g 1g -o ${OUTDIR} -t $SLURM_CPUS_PER_TASK -i 1 --scaffold
+flye --nano-raw ${FASTQ} -g 1g -o ${OUTDIR} -t 32 -i 1 --scaffold --resume
