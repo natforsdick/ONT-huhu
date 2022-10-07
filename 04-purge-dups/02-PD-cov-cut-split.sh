@@ -9,12 +9,10 @@
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/CA.mr.99.17.15.0.02/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/purge_dups/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=primary.genome.scf # PREFIX
-PRI=p_ctg
-ALT=a_ctg
+PRE=huhu-asm1 # PREFIX
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 #########

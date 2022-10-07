@@ -9,10 +9,8 @@
 ##########
 # PARAMS
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/scripts/
-OUTDIR=/nesi/nobackup/ga03186/kaki-hifi-asm/asm5-masurca/purge_dups/
-PRE=primary.genome.scf # PREFIX
-PRI=p_ctg
-ALT=a_ctg
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/
+PRE=huhu-asm1 # PREFIX
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 ASMSTATS=/nesi/project/ga03186/scripts/Assemblathon_scripts/assemblathon_stats.pl
