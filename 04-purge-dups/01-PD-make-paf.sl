@@ -3,7 +3,7 @@
 #SBATCH --job-name=make-paf
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:40:00
+#SBATCH --time=02:00:00
 #SBATCH --mem=30G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
