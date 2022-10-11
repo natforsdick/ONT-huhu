@@ -3,12 +3,12 @@
 #SBATCH --job-name=make-paf
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:30:00
+#SBATCH --time=02:30:00
 #SBATCH --mem=32G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=38
+#SBATCH --cpus-per-task=36
 
 # Purge_dups pipeline
 # Created by Sarah Bailey, UoA
@@ -38,12 +38,17 @@ cd $OUTDIR
 
 echo "Indexing"
 date
+if [ ! -e ${INDIR}${PRE}.mmi ]; 
+then
 minimap2 -d ${INDIR}${PRE}.mmi ${INDIR}${PRE}.fasta
+else
+echo "index found"
+fi
 
 echo "Mapping"
 date
-minimap2 -x map-ont -t $SLURM_CPUS_PER_TASK ${INDIR}${PRE}.mmi \
-	${FASTQ} | gzip -c - > ${R1}${PRE}-mapped.paf.gz
+minimap2 -x map-ont -t 24 ${INDIR}${PRE}.mmi \
+${FASTQ} | gzip -c - > ${R1}${PRE}-mapped.paf.gz
 echo "done"
 date
 
