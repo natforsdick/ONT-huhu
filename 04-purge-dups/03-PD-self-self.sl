@@ -3,8 +3,8 @@
 #SBATCH --job-name=self-self
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=00:05:00
-#SBATCH --mem=10G
+#SBATCH --time=00:35:00
+#SBATCH --mem=30G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
