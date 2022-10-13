@@ -55,7 +55,7 @@ if [ "$1" == "R1" ]; then
     ${PURGE_DUPS}purge_dups -2 -T ${R1}${PRE}-cutoffs -c ${R1}${PRE}-PB.base.cov ${R1}${PRE}.split.self.paf.gz > ${R1}${PRE}-dups.bed 2> ${R1}${PRE}-purge_dups.log
 
     # Step 04b: Get purged primary and haplotig sequences from draft assembly
-    ${PURGE_DUPS}get_seqs -e ${R1}${PRE}-dups.bed ${INDIR}${PRE}.fasta
+    ${PURGE_DUPS}get_seqs -e ${R1}${PRE}-dups.bed ${INDIR}${R1}${PRE}.fasta
 
   elif [ "$1" == "R2" ]; then
     ${PURGE_DUPS}purge_dups -2 -T ${R2}${PRE}-cutoffs -c ${R1}${PRE}-PB.base.cov ${R1}${PRE}.split.self.paf.gz > ${R2}${PRE}-dups.bed 2> ${R2}${PRE}-purge_dups.log
