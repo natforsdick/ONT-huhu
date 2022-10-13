@@ -3,12 +3,12 @@
 #SBATCH --job-name=make-paf
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=02:30:00
-#SBATCH --mem=32G
+#SBATCH --time=07:00:00
+#SBATCH --mem=30G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=36
+#SBATCH --cpus-per-task=48
 
 # Purge_dups pipeline
 # Created by Sarah Bailey, UoA
@@ -29,7 +29,7 @@ INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/
 OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/
 DATA=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/
 PRE=huhu-asm1 # PREFIX
-FASTQ="${DATA}02_2022-05-23-Huhu-SRE_Huhu-PB5-pass_trimmed.fastq.gz ${DATA}02_2022-05-30-Huhu-PB5_Huhu-PB5-pass_trimmed.fastq.gz ${DATA}02_2022-05-16-PB5_Huhu-PB5-pass_trimmed.fastq.gz"
+FASTQ="${DATA}02_2022-05-23-Huhu-SRE_Huhu-PB5-pass_trimmed.fastq.gz"
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 #########
@@ -47,8 +47,8 @@ fi
 
 echo "Mapping"
 date
-minimap2 -x map-ont -t 24 ${INDIR}${PRE}.mmi \
-${FASTQ} | gzip -c - > ${R1}${PRE}-mapped.paf.gz
+minimap2 -x map-ont -t 32 ${INDIR}${PRE}.mmi \
+${FASTQ} | gzip -c - > ${R1}${PRE}-mapped-a.paf.gz
 echo "done"
 date
 
