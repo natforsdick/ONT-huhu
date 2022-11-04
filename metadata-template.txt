@@ -1,0 +1,73 @@
+# METADATA TEMPLATE
+
+1. The main function is simply to describe, in plain English, what data is contained in the folder, for the benefit of future researchers (including future you!).
+
+2. Can include scientific keywords and metadata to assist search engines.
+
+3. Include PI and collaborator names, and if possible a contact email address that will remain active permanently.
+
+4. The README file should always be in plain text format (.txt), so that it can be opened by any device, now and in the future.
+
+# Template
+
+Project: 
+
+Organisation:
+
+Funding:
+
+Collaborators:
+
+Primary contact: 
+
+Iwi affiliations and agreement/MOU:
+
+Relevant data management agreements/MOU:
+
+Ethics permits:
+
+Species:
+
+Individual/sample ID:
+
+Project start date:
+
+Project completion date:
+
+DNA ID: 
+
+Collection date:
+
+Collection location:
+
+Collected by:
+
+DNA prepared by:
+
+Date DNA prepared:
+
+DNA extraction protocol:
+
+Sequencing provider:
+
+Sequencing type:
+
+Sequencing platform:
+
+Sequencing software version:
+
+Date sent for sequencing:
+
+Date sequencing results received:
+
+Total raw reads:
+
+Total bases:
+
+GenBank/data repository accession IDs:
+
+Associated publications:
+
+Total files in directory:
+
+Brief description of files included in this directory: (e.g. purpose of data generation)
