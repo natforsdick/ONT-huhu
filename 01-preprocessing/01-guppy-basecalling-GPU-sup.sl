@@ -15,8 +15,8 @@
 
 #########
 # PARAMS
-INDIR=/nesi/project/ga03186/data/Huhu-MinION/2022-05-30-Huhu-PB5/fast5/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-30-Huhu-PB5/
+INDIR=/nesi/project/ga03186/data/Huhu-MinION/2022-11-01-Huhu-PB5/20221101_1338_MN35694_FAS87731_5a9a6899/fast5/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-11-01-Huhu-PB5/
 SUPCFG=/nesi/project/ga03186/scripts/ONT-scripts/guppy-cfg/dna_r9.4.1_450bps_sup.cfg
 #########
 
