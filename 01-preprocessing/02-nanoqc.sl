@@ -1,7 +1,7 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J NanoQC
-#SBATCH --time 03:00:00
+#SBATCH --time 06:00:00
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=20G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
@@ -67,11 +67,11 @@ else
 	echo 'Already concatenated'
 fi
 
-#echo 'Counting passed reads'
-#zcat ${combined}Huhu-PB5-pass.fastq.gz | echo ${1} PASSED $((`wc -l`/4))
+echo 'Counting passed reads'
+zcat ${combined}Huhu-PB5-pass.fastq.gz | echo ${1} PASSED $((`wc -l`/4))
 
-#echo 'Counting all reads'
-#zcat ${combined}Huhu-PB5-all.fastq.gz | echo ${1} ALL $((`wc -l`/4))
+echo 'Counting all reads'
+zcat ${combined}Huhu-PB5-all.fastq.gz | echo ${1} ALL $((`wc -l`/4))
 
 echo 'Beginning QC'
 cd ${combined}
