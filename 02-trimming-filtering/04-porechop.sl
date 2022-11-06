@@ -4,7 +4,6 @@
 #SBATCH --time=06:00:00
 #SBATCH --cpus-per-task=24
 #SBATCH --mem=54G
-#SBATCH --partition=large
 #SBATCH --output %x.%j.out 
 #SBATCH --error %x.%j.err
 
@@ -17,7 +16,7 @@
 module purge
 module load Porechop/0.2.4-gimkl-2020a-Python-3.8.2
 ###############
-samplist="2022-05-16-PB5 2022-05-23-Huhu-SRE 2022-05-30-Huhu-PB5"
+samplist="2022-11-01-Huhu-PB5"
 file=Huhu-PB5-pass
 
 for samp in $samplist
