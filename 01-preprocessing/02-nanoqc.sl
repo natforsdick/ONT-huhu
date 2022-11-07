@@ -1,9 +1,9 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J NanoQC
-#SBATCH --time 06:00:00
+#SBATCH --time 05:00:00
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=20G
+#SBATCH --mem=26G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL
 #SBATCH --output %x-%j.out
