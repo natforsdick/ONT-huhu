@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J porechop
-#SBATCH --time=06:00:00
+#SBATCH --time=08:00:00
 #SBATCH --cpus-per-task=24
-#SBATCH --mem=54G
+#SBATCH --mem=52G
 #SBATCH --output %x.%j.out 
 #SBATCH --error %x.%j.err
 
@@ -16,7 +16,7 @@
 module purge
 module load Porechop/0.2.4-gimkl-2020a-Python-3.8.2
 ###############
-samplist="2022-11-01-Huhu-PB5"
+samplist="2022-11-01-Huhu-PB5 2022-11-07-Huhu-PB5"
 file=Huhu-PB5-pass
 
 for samp in $samplist
@@ -27,7 +27,7 @@ cd $INDIR
 OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/${samp}/sup-fastq/02-trimfilt/
 
 if [ ! -e $OUTDIR ]; then
-        mkdir -p $OUTDIR
+	mkdir -p $OUTDIR
 fi
 
 # Adapter removal
@@ -35,4 +35,5 @@ fi
 echo "Starting Porechop"
 date
 
-porechop -i ${INDIR}${file}.fastq.gz -o ${OUTDIR}01_${samp}_${file}_adaprem.fastq --discard_middle -t $SLURM_CPUS_PER_TASK
+porechop -i ${INDIR}${file}.fastq.gz -o ${OUTDIR}01_${samp}_${file}_adaprem.fastq --discard_middle -t 18
+done
