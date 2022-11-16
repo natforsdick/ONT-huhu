@@ -5,7 +5,7 @@
 #SBATCH --gpus-per-node  A100:1
 #SBATCH --mem            4G
 #SBATCH --cpus-per-task  4
-#SBATCH --time           10:00:00 # 9.5 hrs for 19.2 Gb input
+#SBATCH --time           11:30:00 # 9.5 hrs for 19.2 Gb input
 #SBATCH --output         %x.%j.out
 #SBATCH --error         %x.%j.err
 
@@ -15,8 +15,8 @@
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-11-01-Huhu-PB5/20221101_1338_MN35694_FAS87731_5a9a6899/fast5/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-11-01-Huhu-PB5/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-11-07-Huhu-PB5/20221107_1535_MN35694_FAS97143_106f7581/fast5/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-11-07-Huhu-PB5/
 SUPCFG=/nesi/project/ga03186/scripts/ONT-scripts/guppy-cfg/dna_r9.4.1_450bps_sup.cfg
 #########
 

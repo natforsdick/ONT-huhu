@@ -3,9 +3,9 @@
 #SBATCH -J NanoQC
 #SBATCH --time 05:00:00
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=26G
+#SBATCH --mem=18G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
-#SBATCH --mail-type=FAIL
+#SBATCH --mail-type=FAIL,END
 #SBATCH --output %x-%j.out
 #SBATCH --error %x-%j.err
 #SBATCH --profile=task 
@@ -79,8 +79,6 @@ for f in *.fastq.gz
 	do
 
 	if [ -e ${combinedQC}${f}.QC/*.html ]; then
-		echo "completed QC for ${f}"
-	else
 		nanoQC ${f} -o ${combinedQC}${f}.QC
 		echo 'Finished ${1} ${f} QC'
 	fi
