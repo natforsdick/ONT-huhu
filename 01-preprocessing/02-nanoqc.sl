@@ -1,13 +1,13 @@
 #!/bin/bash -e
 #SBATCH -A ga03186
 #SBATCH -J NanoQC
-#SBATCH --time 05:00:00
+#SBATCH --time 05:20:00
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=18G
 #SBATCH --mail-user=forsdickn@landcareresearch.co.nz
 #SBATCH --mail-type=FAIL,END
 #SBATCH --output %x-%j.out
 #SBATCH --error %x-%j.err
+#SBATCH --mem 4G
 #SBATCH --profile=task 
 
 # 02-nanoqc.sl
@@ -78,7 +78,7 @@ cd ${combined}
 for f in *.fastq.gz
 	do
 
-	if [ -e ${combinedQC}${f}.QC/*.html ]; then
+	if [ ! -e ${combinedQC}${f}.QC/*.html ]; then
 		nanoQC ${f} -o ${combinedQC}${f}.QC
 		echo 'Finished ${1} ${f} QC'
 	fi
