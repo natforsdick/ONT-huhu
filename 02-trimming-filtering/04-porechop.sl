@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J porechop
-#SBATCH --time=08:00:00
+#SBATCH --time=03:00:00
 #SBATCH --cpus-per-task=24
-#SBATCH --mem=52G
+#SBATCH --mem=72G
 #SBATCH --output %x.%j.out 
 #SBATCH --error %x.%j.err
 
@@ -35,5 +35,7 @@ fi
 echo "Starting Porechop"
 date
 
-porechop -i ${INDIR}${file}.fastq.gz -o ${OUTDIR}01_${samp}_${file}_adaprem.fastq --discard_middle -t 18
+if [ ! -e ${OUTDIR}01_${samp}_${file}_adaprem.fastq ]; then
+	porechop -i ${INDIR}${file}.fastq.gz -o ${OUTDIR}01_${samp}_${file}_adaprem.fastq --discard_middle -t 18
+fi
 done
