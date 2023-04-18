@@ -9,10 +9,10 @@
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/asm2/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm2/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=huhu-asm1 # PREFIX
+PRE=huhu-asm2 # PREFIX
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 #########

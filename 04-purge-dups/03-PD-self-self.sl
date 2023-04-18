@@ -3,7 +3,7 @@
 #SBATCH --job-name=self-self
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=01:00:00
+#SBATCH --time=01:15:00
 #SBATCH --mem=32G
 #SBATCH --ntasks=1
 #SBATCH --profile=task 
@@ -24,8 +24,8 @@ module load minimap2/2.24-GCC-11.3.0
 
 #########
 # PARAMS
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/
-PRE=huhu-asm1 # PREFIX
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm2/
+PRE=huhu-asm2 # PREFIX
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 #########

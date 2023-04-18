@@ -9,8 +9,8 @@
 ##########
 # PARAMS
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/scripts/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/
-PRE=huhu-asm1 # PREFIX
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm2/
+PRE=huhu-asm2 # PREFIX
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 ASMSTATS=/nesi/project/ga03186/scripts/Assemblathon_scripts/assemblathon_stats.pl
@@ -28,12 +28,12 @@ if [ "$1" == "PRI" ]; then
  
   if [ "$2" == "R1" ]; then
   
-    mv purged.fa ${R1}${PRE}${PRI}-purged.fa
-    mv hap.fa ${R1}${PRE}${PRI}-hap.fa
-    python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}${PRI}-cutoffs ${R1}${PRE}${PRI}-PB.stat ${R1}${PRE}${PRI}-PB.cov.png
+    mv purged.fa ${R1}${PRE}-purged.fa
+    mv hap.fa ${R1}${PRE}-hap.fa
+    python3 ${PURGE_DUPS}hist_plot.py -c ${R1}${PRE}-cutoffs ${R1}${PRE}-PB.stat ${R1}${PRE}-PB.cov.png
 
     # Run assemblathon stats
-    $ASMSTATS ${R1}${PRE}${PRI}-purged.fa > ${R1}${PRE}${PRI}-purged.stats
+    $ASMSTATS ${R1}${PRE}-purged.fa > ${R1}${PRE}-purged.stats
 
   elif [ "$2" == "R2" ]; then
     mv purged.fa ${R2}${PRE}${PRI}-purged.fa
