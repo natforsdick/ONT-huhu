@@ -3,9 +3,9 @@
 ###############
 # ENVIRONMENT 
 module purge
-module load Miniconda3/4.9.2
+module load Miniconda3
 
-source /opt/nesi/CS400_centos7_bdw/Miniconda3/4.9.2/etc/profile.d/conda.sh
+source /opt/nesi/CS400_centos7_bdw/Miniconda3/22.11.1-1/etc/profile.d/conda.sh
 conda activate nanoQC
 ###############
 

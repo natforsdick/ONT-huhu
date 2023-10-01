@@ -9,10 +9,10 @@
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/asm2/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm2/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-shasta/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm3-shasta/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=huhu-asm2 # PREFIX
+PRE=huhu-shasta # PREFIX
 R1=01- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 R2=02-
 #########
@@ -46,7 +46,7 @@ elif [ "$1" == "ALT" ]; then
 
 else
 # step 02a: Produce PB.base.cov and PB.stat files
-${PURGE_DUPS}pbcstat ${R1}${PRE}-mapped.paf.gz
+${PURGE_DUPS}pbcstat ${R1}${PRE}-mapped-all.paf.gz
 
 mv PB.stat ${R1}${PRE}-PB.stat
 mv PB.base.cov ${R1}${PRE}-PB.base.cov

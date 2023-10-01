@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J nanoQC
-#SBATCH --time=02:00:00
+#SBATCH --time=01:40:00
 #SBATCH --cpus-per-task=2
-#SBATCH --mem=4G
+#SBATCH --mem=15G
 #SBATCH --output %x.%j.out
 #SBATCH --error %x.%j.err
 
@@ -13,8 +13,8 @@
 
 ###########
 # PARAMS
-export INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-05-23-Huhu-SRE/sup-fastq/02-trimfilt/
-export file=Huhu-PB5-pass
+export INDIR=/nesi/nobackup/ga03186/Huhu_MinION/2022-11-07-Huhu-PB5/sup-fastq/02-trimfilt/
+export file=2022-11-07-Huhu-PB5_Huhu-PB5-pass
 
 
 bash 06-processed-QC.sh

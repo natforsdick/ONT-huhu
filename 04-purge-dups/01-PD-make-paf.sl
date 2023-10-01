@@ -4,12 +4,10 @@
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
 #SBATCH --time=11:00:00
-#SBATCH --mem=36G
-#SBATCH --ntasks=1
-#SBATCH --profile=task 
+#SBATCH --mem=32G
 #SBATCH --account=ga03186
 #SBATCH --cpus-per-task=46
-#SBATCH --array=2
+#SBATCH --array=0-4
 
 # Purge_dups pipeline
 # Created by Sarah Bailey, UoA
@@ -26,10 +24,10 @@ module load minimap2/2.24-GCC-11.3.0
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/asm2/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm2/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-shasta/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm3-shasta/
 DATA=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/
-PRE=huhu-asm2 # PREFIX
+PRE=huhu-shasta # PREFIX
 # FASTQ="${DATA}02_2022-05-23-Huhu-SRE_Huhu-PB5-pass_trimmed.fastq.gz"
 SAMPLE_LIST=($(<${DATA}samplist.txt))
 FASTQ=${SAMPLE_LIST[${SLURM_ARRAY_TASK_ID}]}

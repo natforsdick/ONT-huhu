@@ -2,9 +2,9 @@
 
 #SBATCH -A ga03186
 #SBATCH -J purge
-#SBATCH  --time 00:03:00
+#SBATCH  --time 00:20:00
 #SBATCH -c 2
-#SBATCH --mem=1G
+#SBATCH --mem=10G
 #SBATCH --output %x.%j.out
 #SBATCH --error %x.%j.err
 
@@ -20,10 +20,10 @@
 ##########
 # PARAMS
 ##########
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-flye/asm2/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm2/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/01-shasta/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/02-purge-dups/asm3-shasta/
 PURGE_DUPS=/nesi/nobackup/ga03186/purge_dups/bin/
-PRE=huhu-asm2 # PREFIX
+PRE=huhu-shasta # PREFIX
 R1=01-
 R2=02- # Designate cutoffs round - either default (01) or modified (02) and whether Primary or Alternate assembly
 ##########
@@ -63,7 +63,7 @@ if [ "$1" == "R1" ]; then
     ${PURGE_DUPS}purge_dups -2 -T ${R1}${PRE}-cutoffs -c ${R1}${PRE}-PB.base.cov ${R1}${PRE}.split.self.paf.gz > ${R1}${PRE}-dups.bed 2> ${R1}${PRE}-purge_dups.log
 
     # Step 04b: Get purged primary and haplotig sequences from draft assembly
-    ${PURGE_DUPS}get_seqs -e ${R1}${PRE}-dups.bed ${INDIR}${R1}${PRE}.fasta
+    ${PURGE_DUPS}get_seqs -e ${R1}${PRE}-dups.bed ${INDIR}${PRE}.fasta
 
   elif [ "$1" == "R2" ]; then
     ${PURGE_DUPS}purge_dups -2 -T ${R2}${PRE}-cutoffs -c ${R1}${PRE}-PB.base.cov ${R1}${PRE}.split.self.paf.gz > ${R2}${PRE}-dups.bed 2> ${R2}${PRE}-purge_dups.log

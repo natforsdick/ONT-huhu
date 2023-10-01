@@ -3,8 +3,8 @@
 #SBATCH -J trimgalore
 #SBATCH -c 4
 #SBATCH --mem=1G
-#SBATCH --array=0-3
-#SBATCH --time=06:00:00 #Walltime (HH:MM:SS) 
+#SBATCH --array=1
+#SBATCH --time=10:00:00 #Walltime (HH:MM:SS) 
 #SBATCH --output=%x.%j.%a.out
 #SBATCH --output=%x.%j.%a.err
 

@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J porechop
-#SBATCH --time=03:00:00
-#SBATCH --cpus-per-task=24
-#SBATCH --mem=72G
+#SBATCH --time=02:00:00
+#SBATCH --cpus-per-task=18
+#SBATCH --mem=92G
 #SBATCH --output %x.%j.out 
 #SBATCH --error %x.%j.err
 
@@ -16,7 +16,7 @@
 module purge
 module load Porechop/0.2.4-gimkl-2020a-Python-3.8.2
 ###############
-samplist="2022-11-01-Huhu-PB5 2022-11-07-Huhu-PB5"
+samplist="2022-11-07-Huhu-PB5"
 file=Huhu-PB5-pass
 
 for samp in $samplist
