@@ -5,3 +5,4 @@
 *.cfg
 *.txt
 guppy-cfg/
+01-preprocessing/.ipynb_checkpoints/
