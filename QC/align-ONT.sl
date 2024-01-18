@@ -1,53 +1,55 @@
 #!/bin/bash -e
 
-#SBATCH --job-name=make-paf
+#SBATCH --job-name=minimap-ONT
 #SBATCH --output=%x.%j.out
 #SBATCH --error=%x.%j.err
-#SBATCH --time=12:00:00
-#SBATCH --mem=36G
+#SBATCH --time=23:00:00 # timed out during stats after 20hrs
+#SBATCH --mem=54G # max 52 GB for huhu
 #SBATCH --account=ga03186
-#SBATCH --cpus-per-task=36
-#SBATCH --array=1
+#SBATCH --cpus-per-task=32
 
-# Takes one parameter - PRI or ALT
+# align-ONT.sl
+# Align ONT reads to a reference using minimap2
+# Nat Forsdick, 2021-10-28
 
 #########
 # MODULES
 module purge
-module load minimap2/2.20-GCC-9.2.0 SAMtools/1.13-GCC-9.2.0
+module load minimap2/2.20-GCC-9.2.0 
 #########
 
 #########
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data//02-purge-dups/asm2/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/03-mapping/
-DATA=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/
-PRE=01-huhu-asm2-purged # PREFIX
-SAMPLE_LIST=($(<${DATA}samplist.txt))
-FASTQ=${SAMPLE_LIST[${SLURM_ARRAY_TASK_ID}]}
-
+#########
+DIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/asm-QC/yahs-r2/
+REFDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/yahs/
+REF=huhu-shasta-purged-DT-yahsNMC_JBAT-mapped_scaffolds_final
+ONTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/
+ONT="${ONTDIR}02_2022-05-16-PB5_Huhu-PB5-pass_trimmed.fastq.gz ${ONTDIR}02_2022-05-30-Huhu-PB5_Huhu-PB5-pass_trimmed.fastq.gz ${ONTDIR}02_2022-11-07-Huhu-PB5_Huhu-PB5-pass_trimmed.fastq.gz ${ONTDIR}02_2022-11-01-Huhu-PB5_Huhu-PB5-pass_trimmed.fastq.gz ${ONTDIR}02_2022-05-23-Huhu-SRE_Huhu-PB5-pass_trimmed.fastq.gz"
 #########
 
-cd $OUTDIR
+cd $DIR
 
-echo "Indexing"
-date
-if [ ! -e ${INDIR}${PRE}.mmi ];
-then
-minimap2 -d ${INDIR}${PRE}.mmi ${INDIR}${PRE}.fa
-else
-echo "index found"
-fi
+echo Indexing ${REF}
 
-echo "Mapping ${SLURM_ARRAY_TASK_ID}: ${FASTQ}"
-date
-minimap2 -ax map-ont -t 32 ${INDIR}${PRE}.mmi ${FASTQ} | samtools sort -@ $SLURM_CPUS_PER_TASK -O BAM -o ${OUTDIR}${REF}-${SLURM_ARRAY_TASK_ID}.bam -
-echo "mapped"
+# To index reference genome the first time you run this - can then just call the index ref.mmi following this
+minimap2 -t $SLURM_CPUS_PER_TASK -d ${REF}.mmi ${REFDIR}${REF}.fa
+
+echo Aligning ONT against ${REF}
+# To map HiFi reads to assembly
+minimap2 -ax map-ont -t $SLURM_CPUS_PER_TASK ${REF}.mmi ${ONT} > ${REF}-ont.sam
+
+echo Converting to bam
+ml SAMtools/1.13-GCC-9.2.0
+samtools view -bS -@ $SLURM_CPUS_PER_TASK ${REF}-ont.sam | samtools sort -@ $SLURM_CPUS_PER_TASK -o ${REF}-ont.bam
+
+echo indexing BAM
+samtools index -c ${REF}-ont.bam
 
 echo getting stats
-samtools coverage ${OUTDIR}${REF}-${SLURM_ARRAY_TASK_ID}.bam -o ${OUTDIR}${REF}-${SLURM_ARRAY_TASK_ID}-ont-cov.txt
-samtools stats -@ 32 ${OUTDIR}${REF}-${SLURM_ARRAY_TASK_ID}.bam > ${OUTDIR}${REF}-${SLURM_ARRAY_TASK_ID}-ont-stats.txt
+samtools coverage ${REF}-ont.bam -o ${REF}-ont-cov.txt
+samtools stats -@ $SLURM_CPUS_PER_TASK ${REF}-ont.bam > ${REF}-ont-stats.txt
 
 echo plotting stats
-plot-bamstats -p huhu-${SLURM_ARRAY_TASK_ID}-ont-stats ${OUTDIR}${REF}-${SLURM_ARRAY_TASK_ID}-ont-stats.txt
+plot-bamstats -p ${REF}-ont-stats ${REF}-ont-stats.txt
 echo completed
