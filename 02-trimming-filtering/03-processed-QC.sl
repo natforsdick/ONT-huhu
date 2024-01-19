@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -A ga03186
 #SBATCH -J nanoQC
-#SBATCH --time=01:40:00
+#SBATCH --time=02:00:00
 #SBATCH --cpus-per-task=2
-#SBATCH --mem=15G
+#SBATCH --mem=20G
 #SBATCH --output %x.%j.out
 #SBATCH --error %x.%j.err
 
