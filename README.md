@@ -4,7 +4,7 @@ Nat Forsdick, 2021
 
 Repo containing all scripts associated with huhu (*Prionoplus reticularis*) genome assembly from ONT data.
 
-This is a [Genomics Aotearoa](https://www.genomics-aotearoa.org.nz/) High Quality Genomes project, aiming to produce a reference genome assembly for the Aotearoa endemic insect huhu.
+This is a [Genomics Aotearoa](https://www.genomics-aotearoa.org.nz/) High Quality Genomes and [Manaaki Whenua - Landcare Research](https://landcareresearch.co.nz/) project, aiming to produce a reference genome assembly for the Aotearoa endemic huhu beetle.
 
 Project collaborators: Thomas Buckley, Manpreet Dhami, Ana Podolyan, Duckchul Park, Natalie Forsdick.
 
