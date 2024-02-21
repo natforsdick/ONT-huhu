@@ -8,7 +8,7 @@ This is a [Genomics Aotearoa](https://www.genomics-aotearoa.org.nz/) High Qualit
 
 Project collaborators: Thomas Buckley, Manpreet Dhami, Ana Podolyan, Duckchul Park, Natalie Forsdick.
 
-Research partners: [Te Awahōhonu Forest Truest](https://www.teawahohonu.co.nz/).
+Research partners: [Te Awahōhonu Forest Trust](https://www.teawahohonu.co.nz/).
 
 Data types: ONT MinION long-read data for base assembly, Illumina short-read resequencing data for QC and error correction, Omni-C data for genome scaffolding.
 
