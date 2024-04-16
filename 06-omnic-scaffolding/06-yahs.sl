@@ -14,8 +14,8 @@
 # Passing aligned HiC Weta data to YAHS scaffolding genome assemblies
 ################################
 
-REF_DIR='/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/'
-REF='01-huhu-shasta-purged-DT-yahsNMC_JBAT.FINAL.fa'
+REF_DIR='/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/shasta-purged-polished-omnic/'
+REF='medaka-consensus.fa'
 echo “Making FAI from reference assembly”
 cd $REF_DIR
 if [ ! -e ${REF_DIR}${REF}.fai ]; then
@@ -31,9 +31,9 @@ fi
 
 # make output directory prior to running.
 YAHS='/nesi/project/ga03186/scripts/Hi-C_scripts/yahs/yahs'
-IN_DIR='/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/'
-IN_BAM='huhu-shasta-purged-DT-yahsNMC_JBAT-mapped.PT.bam'
-OUT_DIR='/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/yahs/'
+IN_DIR='/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/shasta-purged-polished-omnic/'
+IN_BAM='medaka-consensus-mapped.PT.bam'
+OUT_DIR='/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/shasta-purged-polished-omnic/yahs/'
 
 if [ ! -e ${OUT_DIR} ]; then
 	mkdir -p ${OUT_DIR}
@@ -45,7 +45,7 @@ cd ${OUT_DIR}
 echo "Starting YAHS for ${IN_BAM} to scaffold ${REF}"
 date
 
-$YAHS ${REF_DIR}${REF} ${IN_DIR}${IN_BAM} -o huhu-shasta-purged-DT-yahsNMC_JBAT-mapped --no-mem-check
+$YAHS ${REF_DIR}${REF} ${IN_DIR}${IN_BAM} -o huhu-medaka-mapped --no-mem-check
 
 echo "Completed YAHS scaffolding"
 date

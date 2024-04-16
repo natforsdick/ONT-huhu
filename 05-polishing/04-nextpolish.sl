@@ -2,8 +2,8 @@
 
 #SBATCH --job-name nextpolish
 #SBATCH --account=landcare03691
-#SBATCH --cpu 20
-#SBATCH --mem=80G
+#SBATCH --cpu 32
+#SBATCH --mem=100G
 #SBATCH --time=24:00:00
 #SBATCH --output=%x_%j.out
 #SBATCH --error=%x_%j.err

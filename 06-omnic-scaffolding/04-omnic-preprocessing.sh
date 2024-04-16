@@ -3,17 +3,17 @@
 ml purge 
 ml SAMtools/1.15.1-GCC-11.3.0 BWA/0.7.17-GCC-11.3.0
 
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/
-REF=01-huhu-shasta-purged-DT-yahsNMC_JBAT.FINAL # prefix
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/05-polish/02-medaka/
+REF=medaka-consensus # prefix
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/shasta-purged-polished-omnic/
 TMPDIR=/nesi/nobackup/ga03186/tmp-omnic
 
 mkdir $TMPDIR
-export TMPDIR
+export TMPDIR=$TMPDIR
 
 cd $OUTDIR
 
-#ln -s ${INDIR}${REF}.fa ${OUTDIR}${REF}.fa
+ln -s ${INDIR}${REF}.fasta ${OUTDIR}${REF}.fa
 
 samtools faidx $REF.fa
 

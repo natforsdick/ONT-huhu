@@ -11,12 +11,12 @@
 # Genome assembly QC - BUSCO alternative
 
 # PARAMS
-INDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/omnic-r2/yahs/
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/BUSCO/
+INDIR=/nesi/nobackup/ga03186/Huhu_MinION/reference-genomes/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/reference-genomes/ # combined-trimmed-data/BUSCO/
 DB=/nesi/project/ga03048/insecta_odb10
-ASM=huhu-shasta-purged-DT-yahsNMC_JBAT-mapped_scaffolds_final.fa
+ASM=GCA_963924545.1_icPogHisp1.1_genomic.fna
 
-asm=$(basename $ASM .fa)
+asm=$(basename $ASM .fna)
 
 cd $INDIR
 module purge
