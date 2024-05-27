@@ -14,12 +14,12 @@
 ##########
 # PARAMS #
 YAHSJUICE=/nesi/project/ga03186/scripts/Hi-C_scripts/yahs/juicer
-OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/
+OUTDIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/shasta-purged-polished-omnic/yahs/
 JUICER=/nesi/nobackup/ga03048/juicer/scripts/juicer_tools.1.9.9_jcuda.0.8.jar
-REF_DIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/
-REF=01-huhu-shasta-purged.fa
-REFPRE=01-huhu-shasta-purged
-SCAF=01-huhu-shasta-purged-DT-yahsNMC
+REF_DIR=/nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/omnic-scaffolding/shasta-purged-polished-omnic/
+REF=medaka-consensus.fa
+REFPRE=medaka-consensus
+SCAF=huhu-medaka-mapped-NMC
 ##########
 
 cd $OUTDIR
