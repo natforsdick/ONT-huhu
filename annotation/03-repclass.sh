@@ -13,6 +13,6 @@ ml RepeatMasker/4.1.0-gimkl-2020a SeqKit/2.4.0 bioawk/1.0 RMBlast/2.10.0-GCC-9.2
 
 cd /nesi/nobackup/ga03186/Huhu_MinION/combined-trimmed-data/annotation/repeats
 
-./repclassifier -t 3 -d Insecta -u huhu-families.priReti1.fa.unknown \
--k huhu-families.priReti1.fa.known -a huhu-families.priReti1.fa.known \
+/nesi/project/ga03186/kaki-genome-assembly/annotation/repclassifier -t 3 -d Insecta -u huhu-families.priRet1.fa.unknown \
+-k huhu-families.priRet1.fa.known -a huhu-families.priRet1.fa.known \
 -o round-1_Repbase-insecta-Self
